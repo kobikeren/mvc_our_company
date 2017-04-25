@@ -1,0 +1,59 @@
+﻿@model MvcOurCompanyBLL.User
+
+@{
+    ViewBag.Title = "Delete User";
+}
+
+<h2>Delete User</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>User</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FirstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LastName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Password)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Password)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Degree)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Degree)
+    </div>
+</fieldset>
+@using (Html.BeginForm("DeleteUser_Post", "ReadWriteUsers", new { id = Model.Id }))
+{
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Yes, I Am Sure" class="btnS1" /> |
+        @Html.ActionLink("No, I Am Not Sure", "ShowUsers")
+    </p>
+}
+
+@section Scripts {
+    <script src="~/Scripts/MvcOurCompanyJS.js"></script>
+}

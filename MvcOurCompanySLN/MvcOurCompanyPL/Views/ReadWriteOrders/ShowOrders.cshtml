@@ -1,0 +1,64 @@
+﻿@model IEnumerable<MvcOurCompanyBLL.Order>
+
+@{
+    ViewBag.Title = "Show Orders";
+}
+
+<h2>Orders</h2>
+
+<p>
+    @Html.ActionLink("Back to Home Page", "Index", "Home") |
+    @Html.ActionLink("Create New", "AddOrder")
+</p>
+<table border="1">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfUnits)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Company)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderStatus)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfUnits)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Company)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderStatus)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditOrder", new { id = item.Id }) |
+            @Html.ActionLink("Details", "DetailsOrder", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "DeleteOrder_Get", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

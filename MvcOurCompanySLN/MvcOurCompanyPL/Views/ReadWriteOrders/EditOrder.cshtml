@@ -1,0 +1,80 @@
+﻿@model MvcOurCompanyBLL.Order
+
+@{
+    ViewBag.Title = "Edit Order";
+}
+
+<h2>Edit Order</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Order</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EmployeeName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EmployeeName)
+            @Html.ValidationMessageFor(model => model.EmployeeName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Product)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Product)
+            @Html.ValidationMessageFor(model => model.Product)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NumberOfUnits)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NumberOfUnits)
+            @Html.ValidationMessageFor(model => model.NumberOfUnits)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Company)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Company)
+            @Html.ValidationMessageFor(model => model.Company)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ContactName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ContactName)
+            @Html.ValidationMessageFor(model => model.ContactName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OrderStatus)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.OrderStatus)
+            @Html.ValidationMessageFor(model => model.OrderStatus)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" class="btnS1" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "ShowOrders")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="~/Scripts/MvcOurCompanyJS.js"></script>
+}

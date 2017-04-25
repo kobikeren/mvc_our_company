@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<header>    
+    <h1>Mvc Our Company</h1>
+    <h2>Home Page</h2>
+</header>
+<div id="mainContent">
+    <nav>
+        <h3>Links</h3>
+
+        @{
+            if (User.Identity.Name == "one" || User.Identity.Name == "two" || 
+                User.Identity.Name == "three")
+            {
+                @Html.ActionLink("View orders", "ShowOrders", "ReadOrders")
+            }
+        }
+
+        @{
+            if (User.Identity.Name == "two" || User.Identity.Name == "three")
+            {
+                @Html.ActionLink("View and edit orders", "ShowOrders", "ReadWriteOrders")
+            }
+        }
+
+        @{
+            if (User.Identity.Name == "three")
+            {
+                @Html.ActionLink("View and edit users", "ShowUsers", "ReadWriteUsers")
+            }
+        }
+
+        @{
+            if (User.Identity.Name == "")
+            {
+                @Html.ActionLink("Log in", "Login")
+            }
+        }
+
+    </nav>
+    <section>
+        <article>
+            <header>
+                <h1>About us</h1>
+            </header>
+            <p>
+                Mvc Our Company - Here, Write about the company and about the web site...
+                <br />
+                Mvc Our Company - Here, Write about the company and about the web site...
+                <br />
+                Mvc Our Company - Here, Write about the company and about the web site...
+                <br />
+                Mvc Our Company - Here, Write about the company and about the web site...
+            </p>
+            <p>
+                Mvc Our Company - Here, Add a few more details (about the company)...
+                <br />
+                Mvc Our Company - Here, Add a few more details (about the company)...
+            </p>
+            <footer>
+                <h2>The best selection of products and services!! Here!!</h2>
+            </footer>
+        </article>
+        <article>
+            <header>
+                <h1>The best solutions for you</h1>
+            </header>
+            <p>
+                Our services
+                <ul>
+                    <li>Service - 1</li>
+                    <li>Service - 2</li>
+                    <li>Service - 3</li>
+                    <li>Service - 4</li>
+                </ul>
+                professionals at providing solutions
+            </p>
+            <footer>
+                <h2>Location: location</h2>
+            </footer>
+        </article>
+    </section>
+    <aside>
+        <h3>Contact us</h3>
+        <p>
+            Dear employee, if you need a UserName and password or if you need 
+            more permissions, please contact the IT Team.
+            <br /><br />
+            IT Team - Telephone number : 444-555-111
+            <br />
+            <mark>
+            we are happy to help with any question or problem!! feel free to call us!!
+            </mark>
+            <br />
+            IT Team - a second number : 444-555-222
+        </p>
+    </aside>
+    <footer>        
+        <h2>Created on April 2017 by Kobi Keren</h2>
+    </footer>
+</div>

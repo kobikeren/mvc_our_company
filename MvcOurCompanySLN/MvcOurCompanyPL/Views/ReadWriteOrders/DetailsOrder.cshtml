@@ -1,0 +1,58 @@
+﻿@model MvcOurCompanyBLL.Order
+
+@{
+    ViewBag.Title = "Details Order";
+}
+
+<h2>Details Order</h2>
+
+<fieldset>
+    <legend>Order</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EmployeeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EmployeeName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Product)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Product)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NumberOfUnits)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NumberOfUnits)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Company)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Company)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ContactName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ContactName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.OrderStatus)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OrderStatus)
+    </div>
+</fieldset>
+<p>    
+    @Html.ActionLink("Back to List", "ShowOrders") |
+    @Html.ActionLink("Edit", "EditOrder", new { id = Model.Id }) |
+    @Html.ActionLink("Delete", "DeleteOrder_Get", new { id = Model.Id })
+</p>
