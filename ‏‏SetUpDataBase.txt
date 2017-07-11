@@ -1,0 +1,193 @@
+STEP 1 : execute the sql script, in Microsoft SQL Server
+STEP 2 : in Web.config file, insert the connection string
+
+
+---------------------------------------------------------------------------------------------
+------------------------------------------ SQL --------------------------------------------
+---------------------------------------------------------------------------------------------
+
+create database dbMvcOurCompany
+go
+
+use dbMvcOurCompany
+go
+
+create table tblUsers
+(
+	Id int primary key identity,
+	FirstName nvarchar(50),
+	LastName nvarchar(50),
+	UserName nvarchar(50),
+	Password nvarchar(50),
+	Degree nvarchar(50)
+)
+go
+
+create table tblOrders
+(
+	Id int primary key identity,
+	EmployeeName nvarchar(50),
+	Product nvarchar(50),
+	NumberOfUnits int,
+	Company nvarchar(50),
+	ContactName nvarchar(50),
+	OrderStatus nvarchar(50)
+)
+go
+
+insert into tblUsers values ('initial-fn','initial-ln','initial-un','initial-pw','three')
+go
+
+create procedure spGetAllUsers
+as
+begin
+	select * from tblUsers
+end
+go
+
+create procedure spGetUserById
+@Id int
+as
+begin
+	select * from tblUsers
+	where Id = @Id
+end
+go
+
+create procedure spInsertUser
+@FirstName nvarchar(50),
+@LastName nvarchar(50),
+@UserName nvarchar(50),
+@Password nvarchar(50),
+@Degree nvarchar(50)
+as
+begin
+	insert into tblUsers values
+	(@FirstName, @LastName, @UserName,
+	@Password, @Degree)
+end
+go
+
+create procedure spUpdateUser
+@Id int,
+@FirstName nvarchar(50),
+@LastName nvarchar(50),
+@UserName nvarchar(50),
+@Password nvarchar(50),
+@Degree nvarchar(50)
+as
+begin
+	update tblUsers set FirstName = @FirstName,
+	LastName = @LastName, UserName = @UserName,
+	Password = @Password, Degree = @Degree
+	where Id = @Id
+end
+go
+
+create procedure spDeleteUser
+@Id int
+as
+begin
+	delete from tblUsers
+	where Id = @Id
+end
+go
+
+create procedure spGetAllOrders
+as
+begin
+	select * from tblOrders
+end
+go
+
+create procedure spGetOrderById
+@Id int
+as
+begin
+	select * from tblOrders
+	where Id = @Id
+end
+go
+
+create procedure spInsertOrder
+@EmployeeName nvarchar(50),
+@Product nvarchar(50),
+@NumberOfUnits int,
+@Company nvarchar(50),
+@ContactName nvarchar(50),
+@OrderStatus nvarchar(50)
+as
+begin
+	insert into tblOrders values
+	(@EmployeeName, @Product, @NumberOfUnits,
+	@Company, @ContactName, @OrderStatus)
+end
+go
+
+create procedure spUpdateOrder
+@Id int,
+@EmployeeName nvarchar(50),
+@Product nvarchar(50),
+@NumberOfUnits int,
+@Company nvarchar(50),
+@ContactName nvarchar(50),
+@OrderStatus nvarchar(50)
+as
+begin
+	update tblOrders set EmployeeName = @EmployeeName,
+	Product = @Product, NumberOfUnits = @NumberOfUnits,
+	Company = @Company, ContactName = @ContactName,
+	OrderStatus = @OrderStatus
+	where Id = @Id
+end
+go
+
+create procedure spDeleteOrder
+@Id int
+as
+begin
+	delete from tblOrders
+	where Id = @Id
+end
+go
+
+create procedure spCheckLoginInfo
+@UserName nvarchar(50),
+@Password nvarchar(50)
+as
+begin
+	Declare @Id int
+	Declare @Degree nvarchar(50)
+
+	select @Id = Id from tblUsers
+	where UserName = @UserName and Password = @Password
+
+	if (@Id is Null)
+	begin
+		select 'RejectLoginInfo'
+	end
+	else
+	begin
+		select @Degree = Degree from tblUsers
+		where Id = @Id
+
+		select @Degree + '-' + Cast(@Id as nvarchar)
+	end
+end
+go
+
+create procedure spUserNameExists
+@UserName nvarchar(50)
+as
+begin
+	Declare @Test nvarchar(50)
+
+	select @Test = UserName from tblUsers
+	where UserName = @UserName
+
+	if (@Test is Null)
+		select 'false'
+	else
+		select 'true'
+end
+go
